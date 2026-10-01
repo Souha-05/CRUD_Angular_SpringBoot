@@ -1,0 +1,12 @@
+package com.souha.backand_springboot.service;
+
+import com.souha.backand_springboot.persistence.model.employee;
+import java.util.List;
+
+public interface EmployeeService {
+    employee save(employee employee);
+    List<employee> getAll();
+    employee getById(Long id);
+    employee update(Long id, employee employee);
+    void delete(Long id);
+}

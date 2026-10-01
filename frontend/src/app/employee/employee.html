@@ -1,0 +1,63 @@
+<div class="employee-page">
+  <h2>Employee Management</h2>
+
+  <form *ngIf="showForm" id="employee-form" class="employee-form" #employeeForm="ngForm" (submit)="$event.preventDefault()" novalidate>
+    <table border="0" class="employee-form-table">
+      <tr>
+        <td><label for="firstName">First name</label></td>
+        <td><input id="firstName" name="firstName" placeholder="First name" [(ngModel)]="employee.firstName" required></td>
+      </tr>
+      <tr>
+        <td><label for="lastName">Last name</label></td>
+        <td><input id="lastName" name="lastName" placeholder="Last name" [(ngModel)]="employee.lastName" required></td>
+      </tr>
+      <tr>
+        <td><label for="email">Email</label></td>
+        <td><input id="email" name="email" type="email" placeholder="Email" [(ngModel)]="employee.email" required></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="actions">
+            <button type="button" class="primary" (click)="onAddClick(employeeForm)">Add Employee</button>
+            <button type="button" (click)="onUpdateClick()">Update</button>
+            <button type="button" (click)="onDeletePromptClick()">Delete</button>
+            <button type="button" (click)="onConsultClick()">Consult Employees</button>
+            <button type="button" (click)="onResetClick(employeeForm)">Clear</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <p *ngIf="message" [ngClass]="'message-' + messageType">{{ message }}</p>
+
+  <p *ngIf="loading" class="loading-state">Loading...</p>
+
+  <hr>
+
+  <table *ngIf="showTable" id="employee-table" border="1" class="employee-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of employees">
+        <td>{{ e.id }}</td>
+        <td>{{ e.firstName }}</td>
+        <td>{{ e.lastName }}</td>
+        <td>{{ e.email }}</td>
+        <td>
+          <button type="button" (click)="editEmployee(e)">Load</button>
+          <button type="button" (click)="deleteEmployee(e.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="showTable && employees.length === 0" class="empty-state">No employee found</p>
+</div>

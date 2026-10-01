@@ -1,0 +1,12 @@
+<section class="home-page">
+  <nav class="dashboard-nav">
+    <div class="brand">Home</div>
+    <div class="dashboard-actions">
+      <button type="button" (click)="addEmployee()">Add Employee</button>
+      <button type="button" (click)="showEmployees()">Employees</button>
+      <button type="button" class="logout" (click)="disconnect()">Disconnect</button>
+    </div>
+  </nav>
+
+  <app-employee></app-employee>
+</section>
